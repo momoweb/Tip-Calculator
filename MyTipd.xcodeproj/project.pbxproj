@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F86033A519BFE19B00918184 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862623D19BE638300476DB9 /* MyViewController.swift */; };
 		F862623C19BE638300476DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862623B19BE638300476DB9 /* AppDelegate.swift */; };
-		F862623E19BE638300476DB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862623D19BE638300476DB9 /* ViewController.swift */; };
+		F862623E19BE638300476DB9 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862623D19BE638300476DB9 /* MyViewController.swift */; };
 		F862624119BE638300476DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F862623F19BE638300476DB9 /* Main.storyboard */; };
 		F862624319BE638300476DB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F862624219BE638300476DB9 /* Images.xcassets */; };
 		F862624F19BE638300476DB9 /* MyTipdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862624E19BE638300476DB9 /* MyTipdTests.swift */; };
@@ -25,10 +26,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F86033AB19C0E51800918184 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		F862623619BE638300476DB9 /* MyTipd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTipd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F862623A19BE638300476DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F862623B19BE638300476DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F862623D19BE638300476DB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F862623D19BE638300476DB9 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		F862624019BE638300476DB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F862624219BE638300476DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F862624819BE638300476DB9 /* MyTipdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTipdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,9 +78,10 @@
 			isa = PBXGroup;
 			children = (
 				F862623B19BE638300476DB9 /* AppDelegate.swift */,
-				F862623D19BE638300476DB9 /* ViewController.swift */,
+				F862623D19BE638300476DB9 /* MyViewController.swift */,
 				F862623F19BE638300476DB9 /* Main.storyboard */,
 				F862624219BE638300476DB9 /* Images.xcassets */,
+				F86033AB19C0E51800918184 /* MyPlayground.playground */,
 				F862623919BE638300476DB9 /* Supporting Files */,
 			);
 			path = MyTipd;
@@ -208,7 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F862623E19BE638300476DB9 /* ViewController.swift in Sources */,
+				F862623E19BE638300476DB9 /* MyViewController.swift in Sources */,
 				F862623C19BE638300476DB9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86033A519BFE19B00918184 /* MyViewController.swift in Sources */,
 				F862624F19BE638300476DB9 /* MyTipdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +399,7 @@
 				F862625419BE638300476DB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F862625519BE638300476DB9 /* Build configuration list for PBXNativeTarget "MyTipdTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +408,7 @@
 				F862625719BE638300476DB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

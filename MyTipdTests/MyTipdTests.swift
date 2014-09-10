@@ -11,9 +11,13 @@ import XCTest
 
 class MyTipdTests: XCTestCase {
     
+    var vc: MyViewController!
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        vc = MyViewController()
+        vc.loadView()
     }
     
     override func tearDown() {
@@ -21,16 +25,23 @@ class MyTipdTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testDisplayTotalAmountFOr0() {
+//        vc.displayTotalAmount(0)
+//        let result = vc.billAmountTextField.text
+//        XCTAssertEqual(result, "£0.00")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func testDisplayTotalAmountFor0() {
+//        self.vc.displayTotalAmount(0)
+//        let result = self.vc.bi
+//        XCTAssertEqual(
+//    }
+    
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measureBlock() {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
 }
