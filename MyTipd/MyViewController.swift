@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Return the string representation of an int currency format. 12345:Int returns "123.45"
+// Return the string format of a currency as the number of pennies. 12345 returns "123.45"
 extension Int {
     var currencyString: String {
         switch self {
@@ -16,6 +16,8 @@ extension Int {
             return "0.00"
         case 1...9 :
             return "0.0\(self)"
+        case let x where self % 100 == 0:   // case for amount with 2 trailing 0s, e.g. 1100
+            return "\(self / 100).00"
         default:
             return "\(self / 100).\(self % 100)"
             }
@@ -24,14 +26,10 @@ extension Int {
 
 public class MyViewController: UIViewController {
     
-    @IBOutlet weak var billAmountTextField: UITextField!
-    @IBOutlet weak var tipPctSegment: UISegmentedControl!
-    @IBOutlet weak var tipAmountTextField: UITextField!
-    @IBOutlet weak var totalAmountTextField: UITextField!
-    
-    private var tipPct = 0
-    private var tipAmount = 0
-    private var totalAmount = 0
+    @IBOutlet public weak var billAmountTextField: UITextField!
+    @IBOutlet public weak var tipPctSegment: UISegmentedControl!
+    @IBOutlet public weak var tipAmountTextField: UITextField!
+    @IBOutlet public weak var totalAmountTextField: UITextField!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -51,51 +49,98 @@ public class MyViewController: UIViewController {
     private func dismissTheKeyboard() {
         self.billAmountTextField.resignFirstResponder()
     }
+    
+    public func displayTotalAmount(amount: Int) {
+         self.totalAmountTextField.text = amount.currencyString
+    }
+    
+    public func displayTipAmount(amount: Int) {
+        self.tipAmountTextField.text = amount.currencyString
+    }
 
+    // reads the label text on the segment, covert that to an integer using .integerValue which ignores any extraneous text characters. this function will still work if you change the percentage on the label to another number
+    public func calTipPercentageForSegment(segment: Int) -> Int{
+        var pctString = self.tipPctSegment.titleForSegmentAtIndex(segment)! as NSString
+        return pctString.integerValue
+    }
+    
+    public func getBillAmount() -> Int {
+        var billAmount = Int((self.billAmountTextField.text as NSString).floatValue * 100.0)
+        return billAmount
+    }
+    
+    // we have to convert to float to do the calculation so we can use lroundf to round of the last penny.
+    public func calTipAmount(amount: Int, percentage: Int) -> Int {
+        var tip = Int(lroundf(Float(amount) * Float(percentage) / 100.0))
+        return tip
+    }
+    //    private func calTipAmount(pctCatergory: Int) -> Int {
+    //        switch pctCatergory {
+    //        case 0:
+    //            return 5
+    //        case 1:
+    //            return 10
+    //        case 2:
+    //            return 15
+    //        case 3:
+    //            return 20
+    //        default:
+    //            return 25
+    //        }
+    //    }
+    
+    public func updateTipDisplay() {
+        var billAmount = getBillAmount()
+        var tipPecentage = calTipPercentageForSegment(tipPctSegment.selectedSegmentIndex)
+        var tipAmount = calTipAmount(billAmount, percentage: tipPecentage)
+        displayTipAmount(tipAmount)
+    }
+    
+    public func updateTotalDisplay() {
+        var billAmount = getBillAmount()
+        var tipPecentage = calTipPercentageForSegment(tipPctSegment.selectedSegmentIndex)
+        var tipAmount = calTipAmount(billAmount, percentage: tipPecentage)
+        displayTipAmount(tipAmount)
+        var total = getBillAmount() + tipAmount
+        displayTotalAmount(total)
+    }
+    
     @IBAction func tipPctChanged(sender: AnyObject) {
         self.dismissTheKeyboard()
-        var tipCategory = (sender as UISegmentedControl).selectedSegmentIndex
-        tipPct = calTipPct(tipCategory)
-        calculateTipAndTotal()
+        updateTipDisplay()
+        updateTotalDisplay()
     }
     
-    func calculateTipAndTotal() {
-        var billAmount = getBillAmountAsInt()
-        tipAmount = calTipAmountAsInt(billAmount)
-        totalAmount = billAmount + tipAmount
-        displayResult()
-    }
-    
-    private func displayResult() {
-        self.totalAmountTextField.text = totalAmount.currencyString
-        self.tipAmountTextField.text = tipAmount.currencyString
-    }
-    
-    // calculates the tip amount based on the tip pecentage
-    // formula for percentage: Float(number) * percentage / 100
-    private func calTipAmountAsInt(amount: Int) -> Int {
-        return Int(lroundf(Float(amount) * Float(tipPct) / 100))
-    }
-    
-    private func getBillAmountAsInt() -> Int {
-        let billAmountAsFloat = (billAmountTextField.text as NSString).floatValue
-        let billAmountAsInt = Int(billAmountAsFloat * 100.0)
-        return billAmountAsInt
-    }
-    
-    private func calTipPct(pctCatergory: Int) -> Int {
-        switch pctCatergory {
-        case 0:
-            return 5
-        case 1:
-            return 10
-        case 2:
-            return 15
-        case 3:
-            return 20
-        default:
-            return 25
-        }
-    }
+//    private func displayResult() {
+//        self.totalAmountTextField.text = totalAmount.currencyString
+//        self.tipAmountTextField.text = tipAmount.currencyString
+//    }
+//
+//    func calculateTipAndTotal() {
+//        var billAmount = getBillAmountAsInt()
+//        tipAmount = calTipAmountAsInt(billAmount)
+//        totalAmount = billAmount + tipAmount
+//        displayResult()
+//    }
+//    
+//    @IBAction func tipPctChanged(sender: AnyObject) {
+//        self.dismissTheKeyboard()
+//        var tipCategory = (sender as UISegmentedControl).selectedSegmentIndex
+//        tipPct = calTipPct(tipCategory)
+//        calculateTipAndTotal()
+//    }
+//    
+//    private func getBillAmountAsInt() -> Int {
+//        let billAmount = (billAmountTextField.text as NSString).integerValue
+//        return billAmount
+//    }
+//    
+//    // calculates the tip amount based on the tip pecentage
+//    // formula for percentage: Float(number) * percentage / 100
+//    private func calTipAmountAsInt(amount: Int) -> Int {
+//        return Int(lroundf(Float(amount) * Float(tipPct) / 100))
+//    }
+//    
+
  }
 
