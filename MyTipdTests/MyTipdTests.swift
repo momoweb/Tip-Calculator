@@ -8,15 +8,17 @@
 
 import UIKit
 import XCTest
+import MyTipd
 
 class MyTipdTests: XCTestCase {
     
-    var vc: MyViewController!
+    var vc: MyTipd.MyViewController!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        vc = MyViewController()
+        let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        vc = storyboard.instantiateInitialViewController() as MyTipd.MyViewController
         vc.loadView()
     }
     
@@ -25,10 +27,14 @@ class MyTipdTests: XCTestCase {
         super.tearDown()
     }
     
-    func testDisplayTotalAmountFOr0() {
+//    func testDisplayTotalAmountFOr0() {
 //        vc.displayTotalAmount(0)
 //        let result = vc.billAmountTextField.text
 //        XCTAssertEqual(result, "£0.00")
+//    }
+    
+    func testVCInstiantiates() {
+        XCTAssertNotNil(vc)
     }
     
 //    func testDisplayTotalAmountFor0() {

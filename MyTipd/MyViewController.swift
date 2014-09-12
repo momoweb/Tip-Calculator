@@ -22,7 +22,7 @@ extension Int {
     }
 }
 
-class MyViewController: UIViewController {
+public class MyViewController: UIViewController {
     
     @IBOutlet weak var billAmountTextField: UITextField!
     @IBOutlet weak var tipPctSegment: UISegmentedControl!
@@ -33,16 +33,13 @@ class MyViewController: UIViewController {
     private var tipAmount = 0
     private var totalAmount = 0
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.displayTheKeyboard()
-        // tests
-        displayTotalAmount(13455)
-        displayTipAmount(2)
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -62,12 +59,22 @@ class MyViewController: UIViewController {
         calculateTipAndTotal()
     }
     
-    private func calculateTipAndTotal() {
-        var billAmount:Int = getBillAmountAsInt()
-        tipAmount = Int(lroundf(Float(billAmount) * Float(tipPct) / 100))
+    func calculateTipAndTotal() {
+        var billAmount = getBillAmountAsInt()
+        tipAmount = calTipAmountAsInt(billAmount)
         totalAmount = billAmount + tipAmount
-        displayTipAmount(tipAmount)
-        displayTotalAmount(totalAmount)
+        displayResult()
+    }
+    
+    private func displayResult() {
+        self.totalAmountTextField.text = totalAmount.currencyString
+        self.tipAmountTextField.text = tipAmount.currencyString
+    }
+    
+    // calculates the tip amount based on the tip pecentage
+    // formula for percentage: Float(number) * percentage / 100
+    private func calTipAmountAsInt(amount: Int) -> Int {
+        return Int(lroundf(Float(amount) * Float(tipPct) / 100))
     }
     
     private func getBillAmountAsInt() -> Int {
@@ -90,14 +97,5 @@ class MyViewController: UIViewController {
             return 25
         }
     }
-    
-    private func displayTotalAmount(amount: Int) {
-        self.totalAmountTextField.text = amount.currencyString
-    }
-    
-    private func displayTipAmount(amount: Int) {
-        self.tipAmountTextField.text = amount.currencyString
-    }
-
-}
+ }
 
