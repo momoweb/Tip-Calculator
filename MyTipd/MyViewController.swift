@@ -50,6 +50,10 @@ public class MyViewController: UIViewController {
         self.billAmountTextField.resignFirstResponder()
     }
     
+    public override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)      // tell view to end editing mode for all its elements
+    }
+    
     public func displayTotalAmount(amount: Int) {
          self.totalAmountTextField.text = amount.currencyString
     }
@@ -69,7 +73,7 @@ public class MyViewController: UIViewController {
         return billAmount
     }
     
-    // we have to convert to float to do the calculation so we can use lroundf to round of the last penny.
+    // covert to float, use lrounf to round off the last penny
     public func calTipAmount(amount: Int, percentage: Int) -> Int {
         var tip = Int(lroundf(Float(amount) * Float(percentage) / 100.0))
         return tip
