@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  MyTipd
-//
-//  Created by Yee Wong on 08/09/2014.
-//  Copyright (c) 2014 www.bitditgit.com. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

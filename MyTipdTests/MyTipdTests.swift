@@ -1,11 +1,3 @@
-//
-//  MyTipdTests.swift
-//  MyTipdTests
-//
-//  Created by Yee Wong on 08/09/2014.
-//  Copyright (c) 2014 www.bitditgit.com. All rights reserved.
-//
-
 import UIKit
 import XCTest
 import MyTipd
@@ -18,7 +10,7 @@ class MyTipdTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        self.vc = storyboard.instantiateInitialViewController() as MyTipd.MyViewController
+        self.vc = storyboard.instantiateInitialViewController() as! MyTipd.MyViewController
         self.vc.loadView()
     }
     

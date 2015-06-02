@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  MyTipd
-//
-//  Created by Yee Wong on 08/09/2014.
-//  Copyright (c) 2014 www.bitditgit.com. All rights reserved.
-//
-
 import UIKit
 
 // Return the string format of a currency as the number of pennies. 12345 returns "123.45"
@@ -50,7 +42,7 @@ public class MyViewController: UIViewController {
         self.billAmountTextField.resignFirstResponder()
     }
     
-    public override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)      // tell view to end editing mode for all its elements
     }
     
